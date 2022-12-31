@@ -22,5 +22,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: cloudlibraries/develop:cpp-ubuntu-20.04
-          file: cpp-ubuntu-20.04.Dockerfile
+          tags: cloudlibraries/develop:ubuntu-22.04
+          file: ubuntu-22.04.Dockerfile
