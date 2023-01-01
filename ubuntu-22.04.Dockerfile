@@ -4,8 +4,9 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
     apt update && apt upgrade -y && \
     apt install -y build-essential curl git && \
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || true && \
-    rm -rf /usr/local && ln -sf /home/linuxbrew/.linuxbrew/ /usr/local && \
-    brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc && \
+    rm -rf /usr/local && ln -sf /home/linuxbrew/.linuxbrew/ /usr/local
+
+RUN brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc && \
     brew install gcc && \
     mv -f /usr/local/bin/x86_64-pc-linux-gnu-gfortran-12 /usr/local/bin/x86_64-pc-linux-gnu-gfortran && \
     mv -f /usr/local/bin/x86_64-pc-linux-gnu-gcc-ranlib-12 /usr/local/bin/x86_64-pc-linux-gnu-gcc-ranlib && \
