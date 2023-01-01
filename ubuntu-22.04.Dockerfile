@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone && \
     apt update && apt upgrade -y && \
     apt install -y build-essential curl git && \
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || true && \
+    touch /.dockerenv && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || true && \
     rm -rf /usr/local && ln -sf /home/linuxbrew/.linuxbrew/ /usr/local && \
     brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
