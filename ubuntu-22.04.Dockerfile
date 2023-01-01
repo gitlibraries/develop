@@ -5,10 +5,7 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
     apt install -y build-essential curl git && \
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || true && \
     rm -rf /usr/local && ln -sf /home/linuxbrew/.linuxbrew/ /usr/local && \
-    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH" && echo "export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH" >> ~/.bashrc && \
     brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
-
-ENV PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
 RUN brew shelenv && \
     brew install gcc && \
