@@ -6,7 +6,11 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || true && \
     rm -rf /usr/local && ln -sf /home/linuxbrew/.linuxbrew/ /usr/local && \
     export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH" && echo "export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH" >> ~/.bashrc && \
-    brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc && \
+    brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
+ENV PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+
+RUN brew shelenv && \
     brew install gcc && \
     mv -f /usr/local/bin/x86_64-pc-linux-gnu-gfortran-12 /usr/local/bin/x86_64-pc-linux-gnu-gfortran && \
     mv -f /usr/local/bin/x86_64-pc-linux-gnu-gcc-ranlib-12 /usr/local/bin/x86_64-pc-linux-gnu-gcc-ranlib && \
@@ -26,12 +30,18 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
     mv -f /usr/local/bin/gcc-12 /usr/local/bin/gcc && \
     mv -f /usr/local/bin/g++-12 /usr/local/bin/g++ && \
     mv -f /usr/local/bin/cpp-12 /usr/local/bin/cpp && \
-    mv -f /usr/local/bin/c++-12 /usr/local/bin/c++ && \
+    mv -f /usr/local/bin/c++-12 /usr/local/bin/c++
+
+RUN brew shelenv && \
     brew install wget curl git zip unzip vim make cmake pkg-config && \
-    brew tap aws/tap && brew install awscli aws-sam-cli && \
+    brew tap aws/tap && brew install awscli aws-sam-cli
+
+RUN brew shelenv && \
     brew install vcpkg && git clone https://github.com/microsoft/vcpkg "$HOME/vcpkg" && \
     export VCPKG_ROOT="$HOME/vcpkg" && echo "export VCPKG_ROOT=$HOME/vcpkg" >> ~/.bashrc && \
-    vcpkg install boost libgo && \
+    vcpkg install boost libgo
+
+RUN brew shelenv && \
     brew install pyenv pyenv-virtualenv && \
     export PYENV_ROOT="$HOME/.pyenv" && echo "export PYENV_ROOT=$HOME/.pyenv" >> ~/.bashrc && \
     export PATH="$PYENV_ROOT/bin:$PATH" && echo "export PATH=$PYENV_ROOT/bin:$PATH" >> ~/.bashrc && \
