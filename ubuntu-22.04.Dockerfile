@@ -7,7 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
     rm -rf /usr/local && ln -sf /home/linuxbrew/.linuxbrew/ /usr/local && \
     brew shellenv && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
-RUN brew shelenv && \
+RUN brew shellenv && \
     brew install gcc && \
     mv -f /usr/local/bin/x86_64-pc-linux-gnu-gfortran-12 /usr/local/bin/x86_64-pc-linux-gnu-gfortran && \
     mv -f /usr/local/bin/x86_64-pc-linux-gnu-gcc-ranlib-12 /usr/local/bin/x86_64-pc-linux-gnu-gcc-ranlib && \
@@ -29,16 +29,16 @@ RUN brew shelenv && \
     mv -f /usr/local/bin/cpp-12 /usr/local/bin/cpp && \
     mv -f /usr/local/bin/c++-12 /usr/local/bin/c++
 
-RUN brew shelenv && \
+RUN brew shellenv && \
     brew install wget curl git zip unzip vim make cmake pkg-config && \
     brew tap aws/tap && brew install awscli aws-sam-cli
 
-RUN brew shelenv && \
+RUN brew shellenv && \
     brew install vcpkg && git clone https://github.com/microsoft/vcpkg "$HOME/vcpkg" && \
     export VCPKG_ROOT="$HOME/vcpkg" && echo "export VCPKG_ROOT=$HOME/vcpkg" >> ~/.bashrc && \
     vcpkg install boost libgo
 
-RUN brew shelenv && \
+RUN brew shellenv && \
     brew install pyenv pyenv-virtualenv && \
     export PYENV_ROOT="$HOME/.pyenv" && echo "export PYENV_ROOT=$HOME/.pyenv" >> ~/.bashrc && \
     export PATH="$PYENV_ROOT/bin:$PATH" && echo "export PATH=$PYENV_ROOT/bin:$PATH" >> ~/.bashrc && \
