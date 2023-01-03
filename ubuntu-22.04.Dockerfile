@@ -1,7 +1,6 @@
 FROM ubuntu:22.04
 
 RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone && \
-    echo "${USER} ALL=(ALL)  NOPASSWD: NOPASSWD: ALL" > /etc/sudoers.d/${USER} && \
     apt update && apt upgrade -y && \
     apt install -y build-essential curl git && \
     touch /.dockerenv && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" || true && \
