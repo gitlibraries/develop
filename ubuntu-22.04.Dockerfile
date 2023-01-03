@@ -2,14 +2,14 @@ FROM ubuntu:22.04
 
 # root
 RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone && \
-    touch touch /.dockerenv && \
+    touch /.dockerenv && \
     touch ${HOME}/.hushlogin && \
     apt update && apt upgrade -y && \
     apt install -y build-essential procps curl file git cobra
 
 # brew
 RUN export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH" && \
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash -s && \
+    bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh) && \
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc && \
     brew install gcc@12 wget curl git zip unzip vim make cmake pkg-config && \
     brew tap aws/tap && brew install awscli aws-sam-cli
