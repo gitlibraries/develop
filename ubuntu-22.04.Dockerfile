@@ -9,7 +9,7 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
 
 # brew
 RUN export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH" && \
-    bash -c $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh) && \
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" && \
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc && \
     brew install gcc@12 wget curl git zip unzip vim make cmake pkg-config && \
     brew tap aws/tap && brew install awscli aws-sam-cli
