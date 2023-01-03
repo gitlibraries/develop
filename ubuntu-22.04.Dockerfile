@@ -22,7 +22,7 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
 
 # golang
 RUN curl -fsSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -s && \
-    export GVM_ROOT=/home/tony/.gvm && . $GVM_ROOT/scripts/gvm-default && \
+    export GVM_ROOT=$HOME/.gvm && . $GVM_ROOT/scripts/gvm-default && \
     gvm install go1.19.4 && gvm use go1.19.4 --default
 
 # python
