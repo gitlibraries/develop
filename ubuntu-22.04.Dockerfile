@@ -21,9 +21,10 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     vcpkg install boost libgo
 
 # golang
-RUN curl -fsSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -s && \
-    export GVM_ROOT=$HOME/.gvm && . $GVM_ROOT/scripts/gvm-default && \
-    gvm install go1.19.4 && gvm use go1.19.4 --default
+RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
+    brew install golang && \
+    curl -fsSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -s && \
+    bash -c "source /root/.gvm/scripts/gvm && gvm install go1.19.4 && gvm use go1.19.4 --default"
 
 # python
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
@@ -32,6 +33,8 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     export PATH="$PYENV_ROOT/bin:$PATH" && echo "export PATH=\$PYENV_ROOT/bin:\$PATH" >> ~/.bashrc && \
     eval "$(pyenv init -)" && echo "eval \"\$(pyenv init -)\"" >> ~/.bashrc && \
     eval "$(pyenv virtualenv-init -)" && echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.bashrc && \
-    CC="/home/linuxbrew/.linuxbrew/bin/gcc-12" CPPFLAGS="-I/home/linuxbrew/.linuxbrew/include" && \
-    LDFLAGS="-L/home/linuxbrew/.linuxbrew/lib" PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/lib/pkgconfig" \
+    export CC="/home/linuxbrew/.linuxbrew/bin/gcc-12" && \
+    export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/include" && \
+    export LDFLAGS="-L/home/linuxbrew/.linuxbrew/lib" && \
+    export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/lib/pkgconfig" && \
     pyenv install 3.7.9 && pyenv global 3.7.9
