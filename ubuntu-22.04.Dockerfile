@@ -11,7 +11,7 @@ RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shangh
 RUN export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH" && \
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash -s && \
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc && \
-    brew install wget curl git zip unzip vim make cmake pkg-config && \
+    brew install gcc@12 wget curl git zip unzip vim make cmake pkg-config && \
     brew tap aws/tap && brew install awscli aws-sam-cli
 
 # c++
@@ -27,7 +27,7 @@ RUN curl -fsSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/g
 
 # python
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
-    brew install pyenv pyenv-virtualenv gcc@12 && \
+    brew install pyenv pyenv-virtualenv && \
     export PYENV_ROOT="$HOME/.pyenv" && echo "export PYENV_ROOT=\$HOME/.pyenv" >> ~/.bashrc && \
     export PATH="$PYENV_ROOT/bin:$PATH" && echo "export PATH=\$PYENV_ROOT/bin:\$PATH" >> ~/.bashrc && \
     eval "$(pyenv init -)" && echo "eval \"\$(pyenv init -)\"" >> ~/.bashrc && \
