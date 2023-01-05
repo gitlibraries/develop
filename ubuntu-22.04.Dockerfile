@@ -24,7 +24,7 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     brew install golang && \
     curl -fsSL https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash -s && \
-    bash -c "source /root/.gvm/scripts/gvm && gvm install go1.19.4 && gvm use go1.19.4 --default"
+    bash -c "source $HOME/.gvm/scripts/gvm && gvm install go1.19.4 && gvm use go1.19.4 --default"
 
 # python
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
