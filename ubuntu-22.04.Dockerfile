@@ -30,7 +30,6 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
 RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     brew install pyenv pyenv-virtualenv && \
     export PYENV_ROOT="$HOME/.pyenv" && echo "export PYENV_ROOT=\$HOME/.pyenv" >> ~/.bashrc && \
-    export PATH="$PYENV_ROOT/bin:$PATH" && echo "export PATH=\$PYENV_ROOT/bin:\$PATH" >> ~/.bashrc && \
     eval "$(pyenv init -)" && echo "eval \"\$(pyenv init -)\"" >> ~/.bashrc && \
     eval "$(pyenv virtualenv-init -)" && echo "eval \"\$(pyenv virtualenv-init -)\"" >> ~/.bashrc && \
     export CC="/home/linuxbrew/.linuxbrew/bin/gcc-12" && \
@@ -38,3 +37,9 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
     export LDFLAGS="-L/home/linuxbrew/.linuxbrew/lib" && \
     export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/lib/pkgconfig" && \
     pyenv install 3.7.9 && pyenv global 3.7.9
+
+# lua
+# RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
+#     brew install luaver && \
+#     luaver install 5.4.4 && luaver --set-default 5.4.4 && \
+#     luaver install-luarocks 3.9.2 && luaver set-default-luarocks 3.9.2
